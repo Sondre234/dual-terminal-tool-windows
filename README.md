@@ -1,12 +1,14 @@
 # Dual Terminal Windows
 
-Dual Terminal Windows adds two independent terminal tool windows to JetBrains IDEs.
-Put one shell on the right and another on the bottom, float them, or arrange
-them however your workflow needs.
+Dual Terminal Windows adds independently movable terminal tool windows to
+JetBrains IDEs. Keep the built-in terminal and add between one and four extra
+shells, then arrange them however your workflow needs.
 
 ## Features
 
-- Two simultaneous shells: **Terminal A** and **Terminal B**.
+- One additional terminal by default, configurable up to four.
+- Live count changes under **Settings | Tools | Dual Terminal Windows**.
+- Extra sessions named **Extra Terminal 1**, **Extra Terminal 2**, and so on.
 - Independent docking, resizing, floating, and hiding.
 - Layout persistence through the IDE's standard tool-window system.
 - Project-root working directory.
@@ -35,16 +37,16 @@ Marketplace installation will be available after the first release is approved.
 ### Install from disk
 
 1. Download the plugin ZIP from the repository's Releases page.
-2. Open **Settings | Plugins** in RustRover.
+2. Open **Settings | Plugins** in your JetBrains IDE.
 3. Select the gear menu and **Install Plugin from Disk**.
-4. Choose the ZIP and restart RustRover when prompted.
+4. Choose the ZIP and restart the IDE when prompted.
 
 Do not extract the ZIP before installing it.
 
 ## Building
 
 The portable build uses the Gradle wrapper and downloads the declared
-RustRover SDK:
+IntelliJ Platform SDK:
 
 ```shell
 ./gradlew buildPlugin
@@ -67,7 +69,7 @@ JETBRAINS_IDE_HOME=/path/to/JetBrains-IDE ./build-local.sh
 To use an installed IDE with Gradle and avoid downloading another copy:
 
 ```shell
-./gradlew -PlocalIdePath=/path/to/RustRover buildPlugin
+./gradlew -PlocalIdePath=/path/to/JetBrains-IDE buildPlugin
 ```
 
 ## Verification

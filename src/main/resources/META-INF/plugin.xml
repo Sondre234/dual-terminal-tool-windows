@@ -1,22 +1,22 @@
 <idea-plugin>
     <id>dev.sondre.dual-terminal-tool-windows</id>
     <name>Dual Terminal Windows</name>
-    <vendor url="https://github.com/Sondre234/dual-terminal-windows">Sondre</vendor>
+    <vendor url="https://github.com/Sondre234/dual-terminal-tool-windows">Sondre</vendor>
     <version>1.0.0-beta.1</version>
 
     <description><![CDATA[
-        <p>Adds two independent terminal tool windows to JetBrains IDEs for developers who want
-        simultaneous shells in different parts of the IDE.</p>
-        <p><b>Terminal A</b> and <b>Terminal B</b> can each be docked, resized,
-        floated, and moved separately. Every shell starts in the project root
-        and uses the IDE's configured terminal shell.</p>
+        <p>Adds independently movable terminal tool windows to JetBrains IDEs
+        for developers who want simultaneous shells in different places.</p>
+        <p>Choose between one and four <b>Extra Terminal</b> windows. Each can
+        be docked, resized, floated, and moved separately. Every shell starts
+        in the project root and uses the IDE's configured terminal shell.</p>
         <p>This beta targets JetBrains IDE builds 253 through 262 and uses the bundled Classic
         terminal implementation.</p>
     ]]></description>
 
     <change-notes><![CDATA[
         <ul>
-            <li>Adds two independently movable terminal tool windows.</li>
+            <li>Adds a configurable number of independently movable terminal tool windows.</li>
             <li>Starts each shell in the current project root.</li>
             <li>Remembers tool-window placement through the IDE layout system.</li>
         </ul>
@@ -27,15 +27,10 @@
     <depends>org.jetbrains.plugins.terminal</depends>
 
     <extensions defaultExtensionNs="com.intellij">
-        <toolWindow id="Terminal A"
-                    anchor="right"
-                    secondary="true"
-                    icon="/icons/dualTerminal.svg"
-                    factoryClass="dev.sondre.dualterminal.DualTerminalToolWindowFactory"/>
-        <toolWindow id="Terminal B"
-                    anchor="bottom"
-                    secondary="true"
-                    icon="/icons/dualTerminal.svg"
-                    factoryClass="dev.sondre.dualterminal.DualTerminalToolWindowFactory"/>
+        <postStartupActivity implementation="dev.sondre.dualterminal.ExtraTerminalRegistrar"/>
+        <applicationConfigurable id="dev.sondre.dualterminal.settings"
+                                 parentId="tools"
+                                 displayName="Dual Terminal Windows"
+                                 instance="dev.sondre.dualterminal.ExtraTerminalSettingsConfigurable"/>
     </extensions>
 </idea-plugin>
