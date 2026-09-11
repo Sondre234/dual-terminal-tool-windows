@@ -4,7 +4,7 @@ All notable changes to this project will be documented here.
 
 ## [Unreleased]
 
-## [1.0.0-beta.1] - 2026-09-11
+## [1.0.1] - 2026-09-11
 
 ### Added
 
@@ -14,5 +14,5 @@ All notable changes to this project will be documented here.
 - Project-root working directory and the shell configured in the IDE.
 - Compatibility with JetBrains IDE builds 253 through 262.
 
-[Unreleased]: https://github.com/Sondre234/dual-terminal-tool-windows/compare/v1.0.0-beta.1...HEAD
-[1.0.0-beta.1]: https://github.com/Sondre234/dual-terminal-tool-windows/releases/tag/v1.0.0-beta.1
+[Unreleased]: https://github.com/Sondre234/dual-terminal-tool-windows/compare/v1.0.1...HEAD
+[1.0.1]: https://github.com/Sondre234/dual-terminal-tool-windows/releases/tag/v1.0.1

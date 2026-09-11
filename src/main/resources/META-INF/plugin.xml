@@ -2,7 +2,7 @@
     <id>dev.sondre.dual-terminal-tool-windows</id>
     <name>Dual Terminal Windows</name>
     <vendor url="https://github.com/Sondre234/dual-terminal-tool-windows">Sondre</vendor>
-    <version>1.0.0-beta.1</version>
+    <version>1.0.1</version>
 
     <description><![CDATA[
         <p>Adds independently movable terminal tool windows to JetBrains IDEs
