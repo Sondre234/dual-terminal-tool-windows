@@ -1,0 +1,41 @@
+<idea-plugin>
+    <id>dev.sondre.dual-terminal-tool-windows</id>
+    <name>Dual Terminal Windows</name>
+    <vendor url="https://github.com/Sondre234/dual-terminal-windows">Sondre</vendor>
+    <version>1.0.0-beta.1</version>
+
+    <description><![CDATA[
+        <p>Adds two independent terminal tool windows for developers who want
+        simultaneous shells in different parts of the IDE.</p>
+        <p><b>Terminal A</b> and <b>Terminal B</b> can each be docked, resized,
+        floated, and moved separately. Every shell starts in the project root
+        and uses the IDE's configured terminal shell.</p>
+        <p>This beta targets RustRover 2026.2 and uses the bundled Classic
+        terminal implementation.</p>
+    ]]></description>
+
+    <change-notes><![CDATA[
+        <ul>
+            <li>Adds two independently movable terminal tool windows.</li>
+            <li>Starts each shell in the current project root.</li>
+            <li>Remembers tool-window placement through the IDE layout system.</li>
+        </ul>
+    ]]></change-notes>
+
+    <idea-version since-build="262" until-build="262.*"/>
+    <depends>com.intellij.modules.platform</depends>
+    <depends>org.jetbrains.plugins.terminal</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <toolWindow id="Terminal A"
+                    anchor="right"
+                    secondary="true"
+                    icon="/icons/dualTerminal.svg"
+                    factoryClass="dev.sondre.dualterminal.DualTerminalToolWindowFactory"/>
+        <toolWindow id="Terminal B"
+                    anchor="bottom"
+                    secondary="true"
+                    icon="/icons/dualTerminal.svg"
+                    factoryClass="dev.sondre.dualterminal.DualTerminalToolWindowFactory"/>
+    </extensions>
+</idea-plugin>
