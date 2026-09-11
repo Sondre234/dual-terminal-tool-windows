@@ -2,17 +2,66 @@
 set -euo pipefail
 
 project_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
-ide_dir="${JETBRAINS_IDE_HOME:-${RUSTROVER_HOME:-/home/sondre/.local/share/JetBrains/RustRover-2026.2.1}}"
 build_dir="$project_dir/build/local"
 classes_dir="$build_dir/classes"
 plugin_dir="$build_dir/plugin/DualTerminalToolWindows"
 plugin_version="$(sed -n 's/^pluginVersion=//p' "$project_dir/gradle.properties")"
 
-if [[ ! -f "$ide_dir/build.txt" || ! -d "$ide_dir/plugins/terminal/lib" ]]; then
-    printf 'A JetBrains IDE with the bundled Terminal plugin was not found at %s\n' "$ide_dir" >&2
-    printf 'Set JETBRAINS_IDE_HOME to its installation directory.\n' >&2
+is_compatible_ide() {
+    local candidate="$1"
+    [[ -f "$candidate/build.txt" \
+        && -x "$candidate/jbr/bin/javac" \
+        && -f "$candidate/plugins/terminal/lib/terminal.jar" ]]
+}
+
+detect_ide() {
+    local user_home="${HOME:?HOME is not set}"
+    local -a search_roots=(
+        "$user_home/.local/share/JetBrains"
+        "$user_home/Library/Application Support/JetBrains/Toolbox/apps"
+        "/Applications"
+        "/opt"
+    )
+    local -a candidates=()
+    local root build_file candidate build_number
+
+    for root in "${search_roots[@]}"; do
+        [[ -d "$root" ]] || continue
+        while IFS= read -r build_file; do
+            candidate="${build_file%/build.txt}"
+            if is_compatible_ide "$candidate"; then
+                build_number="$(tr -d '\r\n' < "$build_file")"
+                candidates+=("$build_number|$candidate")
+            fi
+        done < <(find "$root" -maxdepth 6 -type f -name build.txt -print 2>/dev/null)
+    done
+
+    ((${#candidates[@]} > 0)) || return 1
+    printf '%s\n' "${candidates[@]}" | sort -t '|' -k1,1V | tail -n 1 | cut -d '|' -f 2-
+}
+
+if [[ -n "${JETBRAINS_IDE_HOME:-}" ]]; then
+    ide_dir="$JETBRAINS_IDE_HOME"
+elif ! ide_dir="$(detect_ide)"; then
+    printf 'Could not find a compatible JetBrains IDE installation.\n' >&2
+    printf 'Set JETBRAINS_IDE_HOME to the IDE installation directory.\n' >&2
     exit 1
 fi
+
+if ! is_compatible_ide "$ide_dir"; then
+    printf 'The directory is not a compatible JetBrains IDE installation: %s\n' "$ide_dir" >&2
+    printf 'It must include a bundled JDK and the Terminal plugin.\n' >&2
+    exit 1
+fi
+
+printf 'Using JetBrains IDE at %s (%s)\n' "$ide_dir" "$(tr -d '\r\n' < "$ide_dir/build.txt")"
+
+for tool in jar zip; do
+    if ! command -v "$tool" >/dev/null 2>&1; then
+        printf 'Required build tool is not on PATH: %s\n' "$tool" >&2
+        exit 1
+    fi
+done
 
 rm -rf -- "$build_dir"
 mkdir -p -- "$classes_dir" "$plugin_dir/lib"

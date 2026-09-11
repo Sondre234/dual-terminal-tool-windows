@@ -60,6 +60,7 @@ For a quick build against an installed JetBrains IDE:
 ./build-local.sh
 ```
 
+The script detects JetBrains Toolbox, `/Applications`, and `/opt` installations.
 Override the detected installation if necessary:
 
 ```shell
