@@ -19,7 +19,7 @@ dependencies {
         if (localIdePath != null) {
             local(localIdePath)
         } else {
-            rustRover(providers.gradleProperty("platformVersion").get())
+            intellijIdea(providers.gradleProperty("platformVersion").get())
         }
         bundledPlugin("org.jetbrains.plugins.terminal")
     }
@@ -27,7 +27,7 @@ dependencies {
 
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(25)
+        languageVersion = JavaLanguageVersion.of(21)
     }
 }
 

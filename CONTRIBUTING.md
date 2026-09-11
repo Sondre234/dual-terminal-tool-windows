@@ -1,7 +1,7 @@
 # Contributing
 
 Issues and pull requests are welcome. Please include the IDE name, full build
-number, operating system, and terminal engine when reporting a problem.
+number, product name, operating system, and terminal engine when reporting a problem.
 
 Before opening a pull request, run:
 

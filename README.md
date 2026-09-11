@@ -1,6 +1,6 @@
 # Dual Terminal Windows
 
-Dual Terminal Windows adds two independent terminal tool windows to RustRover.
+Dual Terminal Windows adds two independent terminal tool windows to JetBrains IDEs.
 Put one shell on the right and another on the bottom, float them, or arrange
 them however your workflow needs.
 
@@ -15,7 +15,9 @@ them however your workflow needs.
 
 ## Compatibility
 
-The current beta supports RustRover 2026.2 (`RR-262`). JetBrains currently
+The current beta supports JetBrains IDE builds 253 through 262, including
+IntelliJ IDEA, RustRover, CLion, PyCharm, WebStorm, GoLand, DataGrip, RubyMine,
+Rider, and DataSpell when the bundled Terminal plugin is available. JetBrains currently
 restricts the Reworked Terminal UI to the built-in Terminal tool window, so
 these independent windows use the bundled Classic terminal widget. That API is
 deprecated and may require changes in a future IDE release.
@@ -50,7 +52,7 @@ RustRover SDK:
 
 The plugin ZIP is written under `build/distributions/`.
 
-For a quick build against an installed RustRover copy:
+For a quick build against an installed JetBrains IDE:
 
 ```shell
 ./build-local.sh
@@ -59,7 +61,7 @@ For a quick build against an installed RustRover copy:
 Override the detected installation if necessary:
 
 ```shell
-RUSTROVER_HOME=/path/to/RustRover ./build-local.sh
+JETBRAINS_IDE_HOME=/path/to/JetBrains-IDE ./build-local.sh
 ```
 
 To use an installed IDE with Gradle and avoid downloading another copy:

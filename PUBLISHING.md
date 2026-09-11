@@ -6,7 +6,7 @@
    repository URLs if you choose a different location.
 2. Add a screenshot showing both terminal windows in different positions.
 3. Run the build and verification commands from the README.
-4. Test the resulting ZIP in a clean RustRover 2026.2 installation.
+4. Test the resulting ZIP in clean installations from the supported JetBrains IDE range.
 5. Review the beta compatibility note about the Classic terminal API.
 
 ## First Marketplace upload
