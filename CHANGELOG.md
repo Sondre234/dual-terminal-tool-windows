@@ -4,6 +4,12 @@ All notable changes to this project will be documented here.
 
 ## [Unreleased]
 
+### Fixed
+
+- Replaced deprecated terminal creation and tool-window removal APIs.
+- Used the public tool-window registration builder to avoid override-only API usage.
+- Created terminal sessions directly under their extra window's lifetime.
+
 ## [1.0.2] - 2026-09-11
 
 ### Changed

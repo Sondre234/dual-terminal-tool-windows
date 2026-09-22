@@ -21,8 +21,8 @@ The current beta supports JetBrains IDE builds 253 through 262, including
 IntelliJ IDEA, RustRover, CLion, PyCharm, WebStorm, GoLand, DataGrip, RubyMine,
 Rider, and DataSpell when the bundled Terminal plugin is available. JetBrains currently
 restricts the Reworked Terminal UI to the built-in Terminal tool window, so
-these independent windows use the bundled Classic terminal widget. That API is
-deprecated and may require changes in a future IDE release.
+these independent windows use the bundled Classic terminal runner through the
+`TerminalWidget` interface.
 
 The Classic terminal inherits console colors from the active editor color
 scheme. If the terminal and editor unexpectedly use a light background, select
